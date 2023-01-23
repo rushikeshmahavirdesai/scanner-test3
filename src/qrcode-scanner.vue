@@ -1,6 +1,13 @@
+<!-- <template>
+  <div id="{qrcodeRegionId}"></div>
+</template>
+<script setup>
+import { Html5QrcodeScanner } from "html5-qrcode";
+</script> -->
 <template>
   <div>
-    > test
+    <div id="qr-code-full-region"></div>
+    test
     <textarea name="" id="" cols="30" rows="10">{{ this.barcodeDt }}</textarea>
   </div>
 </template>
@@ -22,10 +29,7 @@ export default {
   },
   data() {
     return {
-      barcodeDt: "hhh",
-      isLoading: true,
-      codeReader: new BrowserMultiFormatReader(),
-      isMediaStreamAPISupported: navigator && navigator.mediaDevices && "enumerateDevices" in navigator.mediaDevices,
+      barcodeDt: null,
     };
   },
 
@@ -44,7 +48,7 @@ export default {
 
   methods: {
     onScanSuccess(decodedText, decodedResult) {
-      this.barcodeDt = decodedText;
+      this.barcodeDt = decodedResult;
       this.$emit("result", decodedText, decodedResult);
     },
   },
