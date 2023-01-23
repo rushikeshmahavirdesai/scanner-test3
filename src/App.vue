@@ -15,7 +15,7 @@
   videoEl.srcObject = stream;
   await videoEl.play();
 
-  const barcodeDetector = new BarcodeDetector({ formats: ["qr_code"] });
+  const barcodeDetector = new BarcodeDetector({ formats: ["qr_code", "code_128", "code_39", "code_93", "codabar", "ean_13"] });
   window.setInterval(async () => {
     const barcodes = await barcodeDetector.detect(videoEl);
     if (barcodes.length <= 0) return;
